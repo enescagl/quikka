@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "822314350798",
+    "firebase_url": "https://quikka-firebase-backend.firebaseio.com",
+    "project_id": "quikka-firebase-backend",
+    "storage_bucket": "quikka-firebase-backend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822314350798:android:fd95fef9789cacb89ab89f",
+        "android_client_info": {
+          "package_name": "com.raf.quikka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822314350798-o8ag84s4tucrpr7546t9r8e8aq9c8ul9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.raf.quikka",
+            "certificate_hash": "69c12cc01c6e44319838b91aca271df764ad00f1"
+          }
+        },
+        {
+          "client_id": "822314350798-vdt27jj9a7nie52u0vu86r1tufa0emc8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOn1DdePEZGRY3Z2lTv8Euge2PyvMiQNU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "822314350798-vdt27jj9a7nie52u0vu86r1tufa0emc8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
