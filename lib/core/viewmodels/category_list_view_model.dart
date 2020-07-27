@@ -4,21 +4,17 @@ import 'package:quikka/core/viewmodels/base_view_model.dart';
 
 class CategoryListViewModel extends BaseViewModel {
   final String currentRoute;
-  final FirestoreService firestoreService;
+  final FirestoreService _firestoreService;
 
-  CategoryListViewModel({this.currentRoute, this.firestoreService});
+  CategoryListViewModel({this.currentRoute, FirestoreService firestoreService})
+      : _firestoreService = firestoreService;
 
   List<QuizCategory> quizCategories;
 
   Future getCategories() async {
     busy = true;
-    firestoreService.getQuizCategories().then((cats) {
-      if (cats != null && cats is List<QuizCategory>) {
-        quizCategories = cats;
-      }
-    });
+    quizCategories = await _firestoreService.getCategories();
     busy = false;
-    notifyListeners();
     // getting categories logic comes here
   }
 }

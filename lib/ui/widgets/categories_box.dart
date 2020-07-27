@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:quikka/core/constants/route_paths.dart';
-import 'package:quikka/core/models/quiz_category.dart';
 import 'package:quikka/core/viewmodels/category_list_view_model.dart';
 import 'package:quikka/ui/shared/base_widget.dart';
 
@@ -16,7 +16,10 @@ class CategoriesBox extends StatelessWidget {
       onViewModelReady: (viewmodel) {
         viewmodel.getCategories();
       },
-      viewmodel: CategoryListViewModel(),
+      viewmodel: CategoryListViewModel(
+        currentRoute: RoutePaths.HomeRoute,
+        firestoreService: Provider.of(context),
+      ),
       builder: (context, viewmodel, child) => Padding(
         padding: const EdgeInsets.only(top: 56.0),
         child: Column(
@@ -32,7 +35,6 @@ class CategoriesBox extends StatelessWidget {
                       runSpacing: 24.0,
                       children: [
                         ...viewmodel.quizCategories
-                            // ...cats
                             .map(
                               (category) => Column(
                                 children: <Widget>[
@@ -52,7 +54,7 @@ class CategoriesBox extends StatelessWidget {
                                         Navigator.pushNamed(
                                           context,
                                           RoutePaths.CategoryQuizListRoute,
-                                          arguments: category.name,
+                                          arguments: category.id,
                                         );
                                       },
                                     ),
@@ -112,31 +114,3 @@ class CategoriesBox extends StatelessWidget {
     );
   }
 }
-
-var cats = [
-  QuizCategory(
-    name: 'Sports',
-    iconFamily: "MaterialIcons",
-    iconCodePoint: Icons.adjust.codePoint,
-  ),
-  QuizCategory(
-    name: 'Films',
-    iconFamily: "MaterialIcons",
-    iconCodePoint: Icons.movie.codePoint,
-  ),
-  QuizCategory(
-    name: 'Technology',
-    iconFamily: "MaterialIcons",
-    iconCodePoint: Icons.ac_unit.codePoint,
-  ),
-  QuizCategory(
-    name: 'Science',
-    iconFamily: "MaterialIcons",
-    iconCodePoint: Icons.accessible_forward.codePoint,
-  ),
-  QuizCategory(
-    name: 'History',
-    iconFamily: "MaterialIcons",
-    iconCodePoint: Icons.account_balance.codePoint,
-  ),
-];
