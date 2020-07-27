@@ -8,7 +8,7 @@ class LeaderboardView extends StatelessWidget {
   final User _user = User(
     appName: '@tomhardy',
     fullName: 'Tom Hardy',
-    id: 1,
+    id: '1',
     imageUrl:
         'https://www.sacintarzin.com/sites/default/files/styles/article_slider/public/media/2017/02/ready-to-relax-650x813.jpg',
   );
@@ -34,7 +34,7 @@ var _competitors = [
   Competitor(
     appName: '@tomhardy',
     fullName: 'Tom Hardy',
-    id: 1,
+    id: '1',
     imageUrl:
         'https://www.sacintarzin.com/sites/default/files/styles/article_slider/public/media/2017/02/ready-to-relax-650x813.jpg',
     point: '1000',
@@ -44,7 +44,7 @@ var _competitors = [
   Competitor(
     appName: '@second',
     fullName: 'Second',
-    id: 2,
+    id: '2',
     imageUrl:
         'https://www.sacintarzin.com/sites/default/files/styles/article_slider/public/media/2017/02/ready-to-relax-650x813.jpg',
     point: '1000',
@@ -54,7 +54,7 @@ var _competitors = [
   Competitor(
     appName: '@third',
     fullName: 'Third',
-    id: 3,
+    id: '3',
     imageUrl:
         'https://www.sacintarzin.com/sites/default/files/styles/article_slider/public/media/2017/02/ready-to-relax-650x813.jpg',
     point: '1000',
@@ -64,7 +64,7 @@ var _competitors = [
   Competitor(
     appName: '@forth',
     fullName: 'Forth',
-    id: 4,
+    id: '4',
     imageUrl:
         'https://www.sacintarzin.com/sites/default/files/styles/article_slider/public/media/2017/02/ready-to-relax-650x813.jpg',
     point: '1000',
@@ -74,7 +74,7 @@ var _competitors = [
   Competitor(
     appName: '@fifth',
     fullName: 'Fifth',
-    id: 5,
+    id: '5',
     imageUrl:
         'https://www.sacintarzin.com/sites/default/files/styles/article_slider/public/media/2017/02/ready-to-relax-650x813.jpg',
     point: '1000',

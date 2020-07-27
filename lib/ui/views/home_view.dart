@@ -12,7 +12,7 @@ class HomeView extends StatelessWidget {
   final User _user = User(
     appName: '@tomhardy',
     fullName: 'Tom Hardy',
-    id: 1,
+    id: '1',
     imageUrl:
         'https://www.sacintarzin.com/sites/default/files/styles/article_slider/public/media/2017/02/ready-to-relax-650x813.jpg',
   );
