@@ -35,10 +35,10 @@ class Router {
         );
 
       case RoutePaths.CategoryQuizListRoute:
-        var categoryName = settings.arguments;
+        var categoryUid = settings.arguments;
         return MaterialPageRoute(
           builder: (_) => CategoryQuizListView(
-            categoryName: categoryName,
+            categoryUid: categoryUid,
           ),
         );
 
