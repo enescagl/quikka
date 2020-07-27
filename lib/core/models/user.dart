@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class User {
-  int id;
+  String id;
   String fullName;
   String appName;
   String imageUrl;
@@ -13,7 +13,7 @@ class User {
   });
 
   User copyWith({
-    int id,
+    String id,
     String fullName,
     String appName,
     String imageUrl,
@@ -35,8 +35,9 @@ class User {
     };
   }
 
-  static User fromMap(Map<String, dynamic> map) {
+  static User fromMap(Map<String, dynamic> map, {String uid}) {
     if (map == null) return null;
+    if (uid != null) map['id'] = uid;
 
     return User(
       id: map['id'],
@@ -48,7 +49,8 @@ class User {
 
   String toJson() => json.encode(toMap());
 
-  static User fromJson(String source) => fromMap(json.decode(source));
+  static User fromJson(String source, {String uid}) =>
+      fromMap(json.decode(source), uid: uid);
 
   @override
   String toString() {

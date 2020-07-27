@@ -6,18 +6,19 @@ import 'package:quikka/core/models/question.dart';
 import 'package:quikka/core/models/quiz_category.dart';
 
 class Quiz {
-  int id;
+  String id;
   String name;
-  QuizCategory category;
+  QuizCategory quizCategory;
   List<Question> questions;
   Quiz({
     this.id,
     this.name,
     this.questions,
+    this.quizCategory,
   });
 
   Quiz copyWith({
-    int id,
+    String id,
     String name,
     List<Question> questions,
   }) {
@@ -25,6 +26,7 @@ class Quiz {
       id: id ?? this.id,
       name: name ?? this.name,
       questions: questions ?? this.questions,
+      quizCategory: quizCategory ?? this.quizCategory,
     );
   }
 
@@ -33,26 +35,30 @@ class Quiz {
       'id': id,
       'name': name,
       'questions': questions?.map((x) => x?.toMap())?.toList(),
+      'quizCategory': quizCategory?.toMap(),
     };
   }
 
-  static Quiz fromMap(Map<String, dynamic> map) {
+  static Quiz fromMap(Map<String, dynamic> map, {String uid}) {
     if (map == null) return null;
+    if (uid != null) map['id'] = uid;
 
     return Quiz(
-      id: map['id'],
-      name: map['name'],
-      questions: List<Question>.from(
-          map['questions']?.map((x) => Question.fromMap(x))),
-    );
+        id: map['id'],
+        name: map['name'],
+        questions: List<Question>.from(
+            map['questions']?.map((x) => Question.fromMap(x))),
+        quizCategory: QuizCategory.fromMap(map['quizCategory']));
   }
 
   String toJson() => json.encode(toMap());
 
-  static Quiz fromJson(String source) => fromMap(json.decode(source));
+  static Quiz fromJson(String source, {String uid}) =>
+      fromMap(json.decode(source), uid: uid);
 
   @override
-  String toString() => 'Quiz(id: $id, name: $name, questions: $questions)';
+  String toString() =>
+      'Quiz(id: $id, name: $name, questions: $questions, quizCategory: $quizCategory)';
 
   @override
   bool operator ==(Object o) {
@@ -61,9 +67,11 @@ class Quiz {
     return o is Quiz &&
         o.id == id &&
         o.name == name &&
-        listEquals(o.questions, questions);
+        listEquals(o.questions, questions) &&
+        o.quizCategory == quizCategory;
   }
 
   @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ questions.hashCode;
+  int get hashCode =>
+      id.hashCode ^ name.hashCode ^ questions.hashCode ^ quizCategory.hashCode;
 }

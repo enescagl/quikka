@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class Competitor {
-  int id;
+  String id;
   String fullName;
   String appName;
   String imageUrl;
@@ -19,7 +19,7 @@ class Competitor {
   });
 
   Competitor copyWith({
-    int id,
+    String id,
     String fullName,
     String appName,
     String imageUrl,
@@ -50,8 +50,9 @@ class Competitor {
     };
   }
 
-  static Competitor fromMap(Map<String, dynamic> map) {
+  static Competitor fromMap(Map<String, dynamic> map, {String uid}) {
     if (map == null) return null;
+    if (uid != null) map['id'] = uid;
 
     return Competitor(
       id: map['id'],
@@ -66,7 +67,8 @@ class Competitor {
 
   String toJson() => json.encode(toMap());
 
-  static Competitor fromJson(String source) => fromMap(json.decode(source));
+  static Competitor fromJson(String source, {String uid}) =>
+      fromMap(json.decode(source), uid: uid);
 
   @override
   String toString() {
