@@ -12,11 +12,41 @@ class QuizView extends StatelessWidget {
           icon: Icon(Icons.close),
           onPressed: () {},
         ),
-        title: Text(quiz.category.name),
+        title: Text(quiz.quizCategory.name),
       ),
       body: Column(children: <Widget>[
         Text(quiz.name),
-        Container(),
+        Stack(
+          children: quiz.questions
+              .map(
+                (question) => Column(
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        Text(question.text),
+                        ...question.options.entries
+                            .map((option) => OutlineButton(
+                                  onPressed: null,
+                                  child: Text(option.value),
+                                ))
+                            .toList()
+                      ],
+                    ),
+                    Column(children: <Widget>[
+                      RaisedButton(
+                        child: Text('Send'),
+                        onPressed: () {},
+                      ),
+                      RaisedButton(
+                        child: Text('Next'),
+                        onPressed: () {},
+                      ),
+                    ])
+                  ],
+                ),
+              )
+              .toList(),
+        ),
       ]),
     );
   }
