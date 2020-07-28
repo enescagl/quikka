@@ -23,7 +23,7 @@ class QuikkaNavigationDrawer extends StatelessWidget {
                   children: <Widget>[
                     CircleAvatar(
                       radius: 36,
-                      backgroundImage: NetworkImage(this.user.imageUrl),
+                      backgroundImage: NetworkImage(user.imageUrl),
                       backgroundColor: Colors.transparent,
                     ),
                     Padding(
@@ -31,10 +31,10 @@ class QuikkaNavigationDrawer extends StatelessWidget {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            this.user.fullName,
+                            user.fullName,
                             style: TextStyle(fontSize: 16),
                           ),
-                          Text(this.user.appName),
+                          Text(user.appName),
                         ],
                       ),
                     )
@@ -45,7 +45,7 @@ class QuikkaNavigationDrawer extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.ac_unit),
               title: Text(
-                "My Account",
+                'My Account',
                 style: TextStyle(
                   fontSize: 14,
                 ),
@@ -55,7 +55,7 @@ class QuikkaNavigationDrawer extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.ac_unit),
               title: Text(
-                "Quiz History",
+                'Quiz History',
                 style: TextStyle(
                   fontSize: 14,
                 ),
@@ -65,7 +65,7 @@ class QuikkaNavigationDrawer extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.ac_unit),
               title: Text(
-                "Leaderboard",
+                'Leaderboard',
                 style: TextStyle(
                   fontSize: 14,
                 ),
@@ -78,7 +78,7 @@ class QuikkaNavigationDrawer extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.ac_unit),
               title: Text(
-                "Share",
+                'Share',
                 style: TextStyle(
                   fontSize: 14,
                 ),
@@ -88,7 +88,7 @@ class QuikkaNavigationDrawer extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.ac_unit),
               title: Text(
-                "Log Out",
+                'Log Out',
                 style: TextStyle(
                   fontSize: 14,
                 ),
@@ -105,7 +105,7 @@ class QuikkaNavigationDrawer extends StatelessWidget {
 class _QuikkaDrawerClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    var path = new Path();
+    var path = Path();
     path.lineTo(0.0, size.height);
     path.lineTo(size.width - 30, size.height);
     path.lineTo(size.width - 30, size.height - (size.height * 4) / 6);

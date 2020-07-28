@@ -67,27 +67,27 @@ class CategoryListView extends StatelessWidget {
 var cats = [
   QuizCategory(
     name: 'Sports',
-    iconFamily: "MaterialIcons",
+    iconFamily: 'MaterialIcons',
     iconCodePoint: Icons.adjust.codePoint,
   ),
   QuizCategory(
     name: 'Films',
-    iconFamily: "MaterialIcons",
+    iconFamily: 'MaterialIcons',
     iconCodePoint: Icons.movie.codePoint,
   ),
   QuizCategory(
     name: 'Technology',
-    iconFamily: "MaterialIcons",
+    iconFamily: 'MaterialIcons',
     iconCodePoint: Icons.ac_unit.codePoint,
   ),
   QuizCategory(
     name: 'Science',
-    iconFamily: "MaterialIcons",
+    iconFamily: 'MaterialIcons',
     iconCodePoint: Icons.accessible_forward.codePoint,
   ),
   QuizCategory(
     name: 'History',
-    iconFamily: "MaterialIcons",
+    iconFamily: 'MaterialIcons',
     iconCodePoint: Icons.account_balance.codePoint,
   ),
 ];

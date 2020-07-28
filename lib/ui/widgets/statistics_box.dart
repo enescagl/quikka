@@ -17,30 +17,30 @@ class StatisticsBox extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          this.header,
-          this.body,
+          header,
+          body,
         ],
       ),
       decoration: BoxDecoration(
         color: Colors.grey[300],
-        borderRadius: this.position != StatisticsBoxPosition.center
+        borderRadius: position != StatisticsBoxPosition.center
             ? BorderRadius.only(
-                topRight: this.position == StatisticsBoxPosition.right
+                topRight: position == StatisticsBoxPosition.right
                     ? Radius.circular(4)
                     : Radius.zero,
-                topLeft: this.position == StatisticsBoxPosition.left
+                topLeft: position == StatisticsBoxPosition.left
                     ? Radius.circular(4)
                     : Radius.zero,
-                bottomLeft: this.position == StatisticsBoxPosition.left
+                bottomLeft: position == StatisticsBoxPosition.left
                     ? Radius.circular(4)
                     : Radius.zero,
-                bottomRight: this.position == StatisticsBoxPosition.right
+                bottomRight: position == StatisticsBoxPosition.right
                     ? Radius.circular(4)
                     : Radius.zero,
               )
             : null,
       ),
-      height: this.height,
+      height: height,
     );
   }
 }

@@ -39,7 +39,7 @@ class QuikkaMainAppBar extends StatelessWidget implements PreferredSizeWidget {
                   children: <Widget>[
                     CircleAvatar(
                       radius: 36,
-                      backgroundImage: NetworkImage(this.user.imageUrl),
+                      backgroundImage: NetworkImage(user.imageUrl),
                       backgroundColor: Colors.transparent,
                     ),
                     Padding(
@@ -47,10 +47,10 @@ class QuikkaMainAppBar extends StatelessWidget implements PreferredSizeWidget {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            this.user.fullName,
+                            user.fullName,
                             style: TextStyle(fontSize: 16),
                           ),
-                          Text(this.user.appName),
+                          Text(user.appName),
                         ],
                       ),
                     )
@@ -68,7 +68,7 @@ class QuikkaMainAppBar extends StatelessWidget implements PreferredSizeWidget {
 class _QuikkaCustomHeaderClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    var path = new Path();
+    var path = Path();
     path.lineTo(0.0, size.height - 36);
 
     var firstControlPoint = Offset(size.width / 4, size.height);

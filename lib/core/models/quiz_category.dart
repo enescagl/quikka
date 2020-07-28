@@ -54,7 +54,7 @@ class QuizCategory {
   static QuizCategory fromJson(String source, {String uid}) =>
       fromMap(json.decode(source), uid: uid);
 
-  get iconData => IconData(iconCodePoint, fontFamily: "MaterialIcons");
+  IconData get iconData => IconData(iconCodePoint, fontFamily: 'MaterialIcons');
 
   @override
   String toString() {

@@ -10,7 +10,7 @@ class FirestoreService implements DataService {
 
   final CollectionReference _quizCollectionReference =
       Firestore.instance.collection('quiz');
-
+  @override
   Future getQuizCategory(String uid) async {
     try {
       var quizCategoryData =
@@ -25,6 +25,7 @@ class FirestoreService implements DataService {
     }
   }
 
+  @override
   Future<List<QuizCategory>> getCategories() async {
     var quizCategoriesSnapshot =
         await _quizCategoryCollectionReference.getDocuments();
@@ -40,6 +41,7 @@ class FirestoreService implements DataService {
     }
   }
 
+  @override
   Future<Quiz> getQuiz(String quizUid) async {
     var quizSnapshot = await _quizCollectionReference.document(quizUid).get();
     if (quizSnapshot.exists) {
@@ -49,6 +51,7 @@ class FirestoreService implements DataService {
     }
   }
 
+  @override
   Future<List<Quiz>> getCategoryQuizes(String categoryUid) async {
     var quizSnapshot = await _quizCollectionReference
         .where('quizCategory', isEqualTo: '/quiz_category/$categoryUid')

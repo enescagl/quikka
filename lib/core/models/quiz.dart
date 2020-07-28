@@ -17,11 +17,11 @@ class Quiz {
     this.quizCategory,
   });
 
-  Quiz copyWith({
-    String id,
-    String name,
-    List<Question> questions,
-  }) {
+  Quiz copyWith(
+      {String id,
+      String name,
+      List<Question> questions,
+      QuizCategory quizCategory}) {
     return Quiz(
       id: id ?? this.id,
       name: name ?? this.name,

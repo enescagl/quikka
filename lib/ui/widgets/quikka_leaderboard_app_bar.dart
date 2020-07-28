@@ -50,16 +50,16 @@ class QuikkaLeaderboardAppBar extends StatelessWidget
                 children: <Widget>[
                   CircleAvatar(
                     radius: 36,
-                    backgroundImage: NetworkImage(this.user.imageUrl),
+                    backgroundImage: NetworkImage(user.imageUrl),
                     backgroundColor: Colors.transparent,
                   ),
                   Column(
                     children: <Widget>[
                       Text(
-                        this.user.fullName,
+                        user.fullName,
                         style: TextStyle(fontSize: 16),
                       ),
-                      Text(this.user.appName),
+                      Text(user.appName),
                     ],
                   )
                 ],
