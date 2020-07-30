@@ -14,7 +14,7 @@ class CategoriesBox extends StatelessWidget {
         style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
       ),
       onViewModelReady: (viewmodel) {
-        viewmodel.getCategories();
+        viewmodel.getCategories(limit: 3);
       },
       viewmodel: CategoryListViewModel(
         currentRoute: RoutePaths.HomeRoute,

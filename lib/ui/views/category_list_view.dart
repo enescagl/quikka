@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quikka/core/constants/route_paths.dart';
 import 'package:quikka/core/models/quiz_category.dart';
+import 'package:quikka/core/viewmodels/category_list_view_model.dart';
+import 'package:quikka/ui/shared/base_widget.dart';
 
 class CategoryListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return BaseWidget<CategoryListViewModel>(
+      viewmodel: CategoryListViewModel(
+        currentRoute: RoutePaths.CategoryListRoute,
+        firestoreService: Provider.of(context),
+      ),
+      onViewModelReady: (viewmodel) {
+        viewmodel.getCategories();
+      },
+      child: AppBar(
         backgroundColor: Colors.white70,
         leading: IconButton(
           icon: Icon(
@@ -25,40 +35,45 @@ class CategoryListView extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: ListView(
-        children: cats
-            .map(
-              (category) => FlatButton(
-                onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    RoutePaths.CategoryQuizListRoute,
-                    arguments: category.name,
-                  );
-                },
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 28.0, vertical: 4),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Icon(
-                        category.iconData,
-                        size: 48,
+      builder: (context, viewmodel, child) => Scaffold(
+        appBar: child,
+        body: viewmodel.busy
+            ? Center(child: CircularProgressIndicator())
+            : ListView(
+                children: viewmodel.quizCategories
+                    .map(
+                      (category) => FlatButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            RoutePaths.CategoryQuizListRoute,
+                            arguments: category.name,
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 28.0, vertical: 4),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Icon(
+                                category.iconData,
+                                size: 48,
+                              ),
+                              Text(
+                                category.name,
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              Chip(
+                                label: Text('30'),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
-                      Text(
-                        category.name,
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Chip(
-                        label: Text('30'),
-                      )
-                    ],
-                  ),
-                ),
+                    )
+                    .toList(),
               ),
-            )
-            .toList(),
       ),
     );
   }

@@ -43,7 +43,7 @@ class Router {
         );
 
       case RoutePaths.ResultRoute:
-        var quizAnswers = settings.arguments as QuizAnswers;
+        var quizAnswers = settings.arguments as QuizAnswer;
         return MaterialPageRoute(
           builder: (_) => ResultView(
             quizAnswers: quizAnswers,

@@ -10,12 +10,12 @@ class CategoryQuizListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseWidget<CategoryQuizListViewModel>(
+      viewmodel:
+          CategoryQuizListViewModel(firestoreService: Provider.of(context)),
       onViewModelReady: (viewmodel) {
         viewmodel.getQuizPreviews(categoryUid);
         viewmodel.getCategory(categoryUid);
       },
-      viewmodel:
-          CategoryQuizListViewModel(firestoreService: Provider.of(context)),
       builder: (context, viewmodel, child) => Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white70,
@@ -42,51 +42,44 @@ class CategoryQuizListView extends StatelessWidget {
               children: viewmodel.quizPreviews
                   .map(
                     (preview) => ExpansionPanelRadio(
-                      value: preview.quiz.id,
+                      value: preview.id,
                       canTapOnHeader: true,
-                      headerBuilder: (context, isExpanded) => Text(
-                        preview.quiz.name,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      body: Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: RichText(
-                              text: TextSpan(
-                                text: preview.quiz.quizCategory.name,
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                                children: [
-                                  // TextSpan(
-                                  //   text: '${preview.timesSolved}',
-                                  //   style:
-                                  //       TextStyle(fontWeight: FontWeight.bold),
-                                  //   children: [
-                                  //     TextSpan(text: 'people solved this quiz.')
-                                  //   ],
-                                  // ),
-                                  TextSpan(
-                                    text: '${preview.questionCount}',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                    children: [TextSpan(text: 'questions.')],
-                                  ),
-                                ],
-                              ),
+                      headerBuilder: (context, isExpanded) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            preview.quiz.name,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 14,
                             ),
                           ),
-                          Container(
-                            child: IconButton(
-                              icon: Icon(Icons.arrow_forward),
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  RoutePaths.QuizRoute,
-                                  arguments: preview.quiz,
-                                );
-                              },
+                        ),
+                      ),
+                      body: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 12),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              preview.questionCount.toString(),
+                              style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                          )
-                        ],
+                            ButtonTheme(
+                              padding: EdgeInsets.all(0),
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.shrinkWrap,
+                              minWidth: 0,
+                              height: 0,
+                              child: FlatButton(
+                                child: Icon(Icons.arrow_forward),
+                                onPressed: () {},
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   )

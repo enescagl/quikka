@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quikka/core/models/quiz_answers.dart';
 
 class ResultView extends StatelessWidget {
-  final QuizAnswers quizAnswers;
+  final QuizAnswer quizAnswers;
   ResultView({this.quizAnswers});
   @override
   Widget build(BuildContext context) {
