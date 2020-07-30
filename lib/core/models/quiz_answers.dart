@@ -2,26 +2,24 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:quikka/core/models/quiz.dart';
-
-class QuizAnswers {
+class QuizAnswer {
   String id;
-  Quiz quiz;
-  Map<int, int> questionAnswers;
-  QuizAnswers({
+  String quizId;
+  Map<String, int> questionAnswers;
+  QuizAnswer({
     this.id,
-    this.quiz,
+    this.quizId,
     this.questionAnswers,
   });
 
-  QuizAnswers copyWith({
+  QuizAnswer copyWith({
     String id,
-    Quiz quiz,
+    String quizId,
     Map<int, int> questionAnswers,
   }) {
-    return QuizAnswers(
+    return QuizAnswer(
       id: id ?? this.id,
-      quiz: quiz ?? this.quiz,
+      quizId: quizId ?? this.quizId,
       questionAnswers: questionAnswers ?? this.questionAnswers,
     );
   }
@@ -29,40 +27,40 @@ class QuizAnswers {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'quiz': quiz?.toMap(),
+      'quiz': quizId,
       'questionAnswers': questionAnswers,
     };
   }
 
-  static QuizAnswers fromMap(Map<String, dynamic> map, {String uid}) {
+  static QuizAnswer fromMap(Map<String, dynamic> map, {String uid}) {
     if (map == null) return null;
     if (uid != null) map['id'] = uid;
 
-    return QuizAnswers(
-      quiz: Quiz.fromMap(map['quiz']),
-      questionAnswers: Map<int, int>.from(map['questionAnswers']),
+    return QuizAnswer(
+      quizId: map['quiz'],
+      questionAnswers: Map<String, int>.from(map['questionAnswers']),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  static QuizAnswers fromJson(String source, {String uid}) =>
+  static QuizAnswer fromJson(String source, {String uid}) =>
       fromMap(json.decode(source), uid: uid);
 
   @override
   String toString() =>
-      'QuizAnswers(id: $id, quiz: $quiz, questionAnswers: $questionAnswers)';
+      'QuizAnswers(id: $id, quizId: $quizId, questionAnswers: $questionAnswers)';
 
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
 
-    return o is QuizAnswers &&
+    return o is QuizAnswer &&
         o.id == id &&
-        o.quiz == quiz &&
+        o.quizId == quizId &&
         mapEquals(o.questionAnswers, questionAnswers);
   }
 
   @override
-  int get hashCode => id.hashCode ^ quiz.hashCode ^ questionAnswers.hashCode;
+  int get hashCode => id.hashCode ^ quizId.hashCode ^ questionAnswers.hashCode;
 }

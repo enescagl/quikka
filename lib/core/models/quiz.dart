@@ -2,31 +2,25 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:quikka/core/models/question.dart';
-import 'package:quikka/core/models/quiz_category.dart';
-
 class Quiz {
   String id;
   String name;
-  QuizCategory quizCategory;
-  List<Question> questions;
+  String quizCategoryId;
+  List<String> questionIds;
   Quiz({
     this.id,
     this.name,
-    this.questions,
-    this.quizCategory,
+    this.questionIds,
+    this.quizCategoryId,
   });
 
   Quiz copyWith(
-      {String id,
-      String name,
-      List<Question> questions,
-      QuizCategory quizCategory}) {
+      {String id, String name, List<String> questionIds, int quizCategoryId}) {
     return Quiz(
       id: id ?? this.id,
       name: name ?? this.name,
-      questions: questions ?? this.questions,
-      quizCategory: quizCategory ?? this.quizCategory,
+      questionIds: questionIds ?? this.questionIds,
+      quizCategoryId: quizCategoryId ?? this.quizCategoryId,
     );
   }
 
@@ -34,8 +28,8 @@ class Quiz {
     return {
       'id': id,
       'name': name,
-      'questions': questions?.map((x) => x?.toMap())?.toList(),
-      'quizCategory': quizCategory?.toMap(),
+      'questions': questionIds?.map((x) => x)?.toList(),
+      'quizCategory': quizCategoryId,
     };
   }
 
@@ -46,9 +40,8 @@ class Quiz {
     return Quiz(
         id: map['id'],
         name: map['name'],
-        questions: List<Question>.from(
-            map['questions']?.map((x) => Question.fromMap(x))),
-        quizCategory: QuizCategory.fromMap(map['quizCategory']));
+        questionIds: List<String>.from(map['questions']?.map((x) => x)),
+        quizCategoryId: map['quizCategory']);
   }
 
   String toJson() => json.encode(toMap());
@@ -58,7 +51,7 @@ class Quiz {
 
   @override
   String toString() =>
-      'Quiz(id: $id, name: $name, questions: $questions, quizCategory: $quizCategory)';
+      'Quiz(id: $id, name: $name, questions: $questionIds, quizCategoryId: $quizCategoryId)';
 
   @override
   bool operator ==(Object o) {
@@ -67,11 +60,14 @@ class Quiz {
     return o is Quiz &&
         o.id == id &&
         o.name == name &&
-        listEquals(o.questions, questions) &&
-        o.quizCategory == quizCategory;
+        listEquals(o.questionIds, questionIds) &&
+        o.quizCategoryId == quizCategoryId;
   }
 
   @override
   int get hashCode =>
-      id.hashCode ^ name.hashCode ^ questions.hashCode ^ quizCategory.hashCode;
+      id.hashCode ^
+      name.hashCode ^
+      questionIds.hashCode ^
+      quizCategoryId.hashCode;
 }
