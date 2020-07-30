@@ -11,9 +11,10 @@ class CategoryListViewModel extends BaseViewModel {
 
   List<QuizCategory> quizCategories;
 
-  Future getCategories() async {
+  Future getCategories({int limit}) async {
     busy = true;
-    quizCategories = await _firestoreService.getCategories();
+    quizCategories = await _firestoreService.getCategories(limit: limit);
+
     busy = false;
     // getting categories logic comes here
   }

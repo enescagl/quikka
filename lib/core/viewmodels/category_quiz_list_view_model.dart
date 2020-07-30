@@ -6,7 +6,7 @@ import 'package:quikka/core/viewmodels/base_view_model.dart';
 class CategoryQuizListViewModel extends BaseViewModel {
   final FirestoreService _firestoreService;
 
-  List<QuizPreview> quizPreviews;
+  List<QuizPreview> quizPreviews = [];
   QuizCategory category;
 
   CategoryQuizListViewModel({FirestoreService firestoreService})
@@ -15,12 +15,13 @@ class CategoryQuizListViewModel extends BaseViewModel {
   Future getQuizPreviews(String categoryUid) async {
     busy = true;
     var quizes = await _firestoreService.getCategoryQuizes(categoryUid);
+    await getCategory(categoryUid);
     quizes.forEach((quiz) {
       quizPreviews.add(QuizPreview(
+        questionCount: quiz.questionIds.length,
         id: quiz.id,
-        questionCount: quiz.questions.length,
         quiz: quiz,
-        quizCategory: quiz.quizCategory,
+        quizCategory: category,
       ));
     });
     busy = false;
