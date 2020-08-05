@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 class QuizAnswer {
   String id;
   String quizId;
-  Map<String, int> questionAnswers;
+  List<Map<String, String>> questionAnswers;
   QuizAnswer({
     this.id,
     this.quizId,
@@ -15,7 +15,7 @@ class QuizAnswer {
   QuizAnswer copyWith({
     String id,
     String quizId,
-    Map<int, int> questionAnswers,
+    List<Map<String, String>> questionAnswers,
   }) {
     return QuizAnswer(
       id: id ?? this.id,
@@ -27,7 +27,7 @@ class QuizAnswer {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'quiz': quizId,
+      'quizId': quizId,
       'questionAnswers': questionAnswers,
     };
   }
@@ -38,7 +38,11 @@ class QuizAnswer {
 
     return QuizAnswer(
       quizId: map['quiz'],
-      questionAnswers: Map<String, int>.from(map['questionAnswers']),
+      questionAnswers: List<Map<String, String>>.from(map['questionAnswers']
+          ?.map((x) => {
+                'questionId': x['questionId'],
+                'selectedOption': x['selectedOption']
+              })),
     );
   }
 
@@ -49,7 +53,7 @@ class QuizAnswer {
 
   @override
   String toString() =>
-      'QuizAnswers(id: $id, quizId: $quizId, questionAnswers: $questionAnswers)';
+      'QuizAnswer(id: $id, quizId: $quizId, questionAnswers: $questionAnswers)';
 
   @override
   bool operator ==(Object o) {
@@ -58,7 +62,7 @@ class QuizAnswer {
     return o is QuizAnswer &&
         o.id == id &&
         o.quizId == quizId &&
-        mapEquals(o.questionAnswers, questionAnswers);
+        listEquals(o.questionAnswers, questionAnswers);
   }
 
   @override

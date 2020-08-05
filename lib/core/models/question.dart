@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 class Question {
   String id;
   String text;
-  Map<int, String> options;
+  List<Map<String, dynamic>> options;
   Question({
     this.id,
     this.text,
@@ -15,7 +15,7 @@ class Question {
   Question copyWith({
     String id,
     String text,
-    Map<int, String> options,
+    List<Map<String, dynamic>> options,
   }) {
     return Question(
       id: id ?? this.id,
@@ -39,7 +39,8 @@ class Question {
     return Question(
       id: map['id'],
       text: map['text'],
-      options: Map<int, String>.from(map['options']),
+      options: List<Map<String, dynamic>>.from(
+          map['options']?.map((x) => {'id': x['id'], 'option': x['option']})),
     );
   }
 
@@ -58,7 +59,7 @@ class Question {
     return o is Question &&
         o.id == id &&
         o.text == text &&
-        mapEquals(o.options, options);
+        listEquals(o.options, options);
   }
 
   @override
