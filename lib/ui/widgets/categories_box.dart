@@ -17,8 +17,8 @@ class CategoriesBox extends StatelessWidget {
         viewmodel.getCategories(limit: 3);
       },
       viewmodel: CategoryListViewModel(
+        dataService: Provider.of(context),
         currentRoute: RoutePaths.HomeRoute,
-        firestoreService: Provider.of(context),
       ),
       builder: (context, viewmodel, child) => Padding(
         padding: const EdgeInsets.only(top: 56.0),

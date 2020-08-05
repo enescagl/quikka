@@ -11,7 +11,7 @@ class CategoryListView extends StatelessWidget {
     return BaseWidget<CategoryListViewModel>(
       viewmodel: CategoryListViewModel(
         currentRoute: RoutePaths.CategoryListRoute,
-        firestoreService: Provider.of(context),
+        dataService: Provider.of(context),
       ),
       onViewModelReady: (viewmodel) {
         viewmodel.getCategories();
