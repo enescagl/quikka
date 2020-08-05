@@ -1,6 +1,8 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:quikka/core/services/authentication_service.dart';
+import 'package:quikka/core/services/data_service.dart';
+import 'package:quikka/core/services/firebase_authentication_service.dart';
 import 'package:quikka/core/services/firestore_service.dart';
 
 List<SingleChildWidget> providers = [
@@ -10,8 +12,8 @@ List<SingleChildWidget> providers = [
 ];
 
 List<SingleChildWidget> independentServices = [
-  Provider.value(value: AuthenticationService()),
-  Provider.value(value: FirestoreService())
+  Provider<DataService>.value(value: FirestoreService()),
+  Provider<AuthenticationService>.value(value: FirebaseAuthenticationService())
 ];
 
 List<SingleChildWidget> dependentServices = [
