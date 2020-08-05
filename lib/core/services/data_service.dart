@@ -1,5 +1,6 @@
 import 'package:quikka/core/models/question.dart';
 import 'package:quikka/core/models/quiz.dart';
+import 'package:quikka/core/models/quiz_answers.dart';
 import 'package:quikka/core/models/quiz_category.dart';
 
 abstract class DataService {
@@ -8,4 +9,5 @@ abstract class DataService {
   Future<Quiz> getQuiz(String quizUid);
   Future<List<Quiz>> getCategoryQuizes(String categoryUid);
   Future<Question> getQuestion(String questionId);
+  Future<String> createQuizAnswers(QuizAnswer quizAnswer);
 }

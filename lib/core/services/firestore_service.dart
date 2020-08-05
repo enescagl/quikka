@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:quikka/core/models/question.dart';
 import 'package:quikka/core/models/quiz.dart';
+import 'package:quikka/core/models/quiz_answers.dart';
 import 'package:quikka/core/models/quiz_category.dart';
 import 'package:quikka/core/services/data_service.dart';
 
@@ -13,7 +14,10 @@ class FirestoreService implements DataService {
       Firestore.instance.collection('quiz');
 
   final CollectionReference _questionCollecitonReference =
-      Firestore.instance.collection('quiz');
+      Firestore.instance.collection('question');
+
+  final CollectionReference _questionAnswersCollecitonReference =
+      Firestore.instance.collection('question_answers');
   @override
   Future getQuizCategory(String uid) async {
     try {
@@ -85,5 +89,12 @@ class FirestoreService implements DataService {
     } else {
       return null;
     }
+  }
+
+  @override
+  Future<String> createQuizAnswers(QuizAnswer quizAnswer) async {
+    var newAnswerListReference =
+        await _questionAnswersCollecitonReference.add(quizAnswer.toMap());
+    return newAnswerListReference.documentID;
   }
 }
